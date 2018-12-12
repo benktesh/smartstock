@@ -35,7 +35,6 @@ namespace Api
 
 
             var config = Configuration.GetSection("ApplicationSetting").Get<ApplicationSetting>();
-            var config1 = Configuration.GetSection("ApplicationSetting");
             applicationName = config.Name;
             version = config.Version;
 
