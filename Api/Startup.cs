@@ -10,11 +10,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
+
 
 namespace Api
 {
     public class Startup
     {
+        private string applicationName;
+        private string version; 
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,6 +31,20 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+
+            var config = Configuration.GetSection("ApplicationSetting").Get<ApplicationSetting>();
+            var config1 = Configuration.GetSection("ApplicationSetting");
+            applicationName = config.Name;
+            version = config.Version;
+
+
+            // Register the Swagger generator
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = applicationName, Version = version });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +58,16 @@ namespace Api
             {
                 app.UseHsts();
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{applicationName} {version}");
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();
