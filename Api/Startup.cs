@@ -32,8 +32,6 @@ namespace Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-
-
             var config = Configuration.GetSection("ApplicationSetting").Get<ApplicationSetting>();
             applicationName = config.Name;
             version = config.Version;
