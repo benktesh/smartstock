@@ -1,11 +1,11 @@
-﻿Swagger
+﻿Complete article written on Swagger can be found at: https://benktesh.blogspot.com/2018/12/visualize-and-test-api-with-swagger.html
+
+
 
 Install Pacakge:
 	Install-Package Swashbuckle.AspNetCore
 
 Register the Swagger generator in Startup.cs 
-
-	
 
 	//import swagger
 	using Swashbuckle.AspNetCore.Swagger;
