@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
+    [Obsolete("Marked for Removal", true)]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
