@@ -12,22 +12,35 @@ namespace Api.Data
         /// <summary>
         /// This is a temp data storage for now
         /// </summary>
-        private static IList<Stock>  result = new List<Stock>
-        {
-            new Stock {Id = Guid.NewGuid(), Ticker = "AONE", Company = "Company1", Price = 100},
-            new Stock {Id = Guid.NewGuid(), Ticker = "BONE", Company = "Company2", Price = 100},
-            new Stock {Id = Guid.NewGuid(), Ticker = "CONE", Company = "Company3", Price = 100}
-        };
+        private static IList<Stock> result = GenerateMoreStocks();  
 
         public static IEnumerable<Stock> GetStocks()
         {
+            if (result.Count == 0)
+            {
+                result = GenerateMoreStocks(); 
+            }
            
             return result; 
+        }
+
+        private static IList<Stock>  GenerateMoreStocks()
+        {
+            return new List<Stock>
+            {
+                new Stock {Id = Guid.NewGuid(), Ticker = "AONE", Company = "Company1", Price = 100},
+                new Stock {Id = Guid.NewGuid(), Ticker = "BONE", Company = "Company2", Price = 100},
+                new Stock {Id = Guid.NewGuid(), Ticker = "CONE", Company = "Company3", Price = 100}
+            };
         }
 
 
         public static IEnumerable<Stock> GetStock(String symbol)
         {
+            if (result.Count == 0)
+            {
+                result = GenerateMoreStocks();
+            }
             return result.Where(k => k.Ticker.Equals(symbol));
         }
 
