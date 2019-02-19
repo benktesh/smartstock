@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /Api/Properties/PublishProfiles/SmartStockAPI - Web Deploy.pubxml
+/Api/Properties/PublishProfiles/SmartStockAPI - Web Deploy1.pubxml
