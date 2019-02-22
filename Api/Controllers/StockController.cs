@@ -35,7 +35,7 @@ namespace Api.Controllers
         /// <summary>
         /// This method searches for ticker and returns the list of matching the ticker.  
         /// </summary>
-        /// <param name="symbol"></param>
+        /// <param name="stock"></param>
         /// <returns></returns>
         [HttpPost]
         public Stock PostStock(Stock stock)
